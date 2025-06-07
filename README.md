@@ -72,17 +72,22 @@ The development is ongoing with Linux as the target system. The implementation i
 ### Network Topology
 
 The setup consists of:
-- **4 HIP routers** forming the VPLS backbone
-- **5 switches** connecting hosts and routers
-- **4 hosts** that are topology-agnostic
+- **2 HIP routers** (r1, r2) forming the VPLS backbone
+- **3 switches** (s1, s2, s5) connecting hosts and routers
+- **2 hosts** (h1, h2) that are topology-agnostic
 
 ```
-h1 ---- s1 ---- r1 ---- r2 ---- s4 ---- h2
-             \         /
-              r3 ---- r4
-             /         \
-h3 ---- s2 ----       ---- s5 ---- h4
+h1 ---- s1 ---- r1 ---- s5 ---- r2 ---- s2 ---- h2
+     192.168.1.100  192.168.3.1  192.168.3.2  192.168.1.101
 ```
+
+**Network Details:**
+- **h1**: `192.168.1.100/24` → default route via `192.168.1.1` (r1)
+- **h2**: `192.168.1.101/24` → default route via `192.168.1.2` (r2)
+- **r1-eth0**: `192.168.1.1/24` (host-facing interface)
+- **r1-eth1**: `192.168.3.1/29` (backbone interface)
+- **r2-eth0**: `192.168.1.2/24` (host-facing interface)
+- **r2-eth1**: `192.168.3.2/29` (backbone interface)
 
 ### Testing the Implementation
 
@@ -125,7 +130,9 @@ mininet> r1 tcpdump -n -i r1-eth1 proto 51
 
 **View switch port status:**
 ```bash
-mininet> s4 ovs-ofctl show "s4"
+mininet> s1 ovs-ofctl show "s1"
+mininet> s2 ovs-ofctl show "s2"
+mininet> s5 ovs-ofctl show "s5"
 ```
 
 **Monitor AH authentication:**
