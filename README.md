@@ -7,7 +7,7 @@
 
 ## About
 
-Virtual Private LAN Services (VPLS) are commonplace in modern networking. This repository contains an implementation of VPLS based on the Host Identity Protocol (HIP) with **IPsec Authentication Header (AH)** as the data plane security mechanism.
+This repository contains an implementation of VPLS based on the Host Identity Protocol (HIP) with **IPsec Authentication Header (AH)** as the data plane security mechanism.
 
 ## Introduction
 
@@ -15,16 +15,15 @@ Host Identity Protocol (HIP) is a layer 3.5 solution initially designed to split
 
 This repository contains a comprehensive implementation of **HIP-VPLS with IPsec AH data plane**, providing:
 
-- ✅ **Authentication without encryption** - Inner packets remain visible for debugging
-- ✅ **RFC 4302 compliant** AH implementation
-- ✅ **Wireshark-friendly** packet captures
-- ✅ **HMAC-based integrity** protection
-- ✅ **Backward compatible** with existing HIP infrastructure
+- **Authentication without encryption** - Inner packets remain visible for debugging
+- **RFC 4302 compliant** AH implementation
+- **Wireshark-friendly** packet captures
+- **HMAC-based integrity** protection
+- **Backward compatible** with existing HIP infrastructure
 
 ### Key Features
 
 - **IPsec Authentication Header (AH)**: Provides authentication and integrity without encryption
-- **Packet Visibility**: Inner packets (ICMP, etc.) are fully visible in network captures
 - **HIP Base Exchange**: Complete HIP BEX implementation for secure channel establishment
 - **VPLS Functionality**: Layer 2 VPN services over HIP-secured tunnels
 - **Mininet Integration**: Ready-to-use simulation environment
@@ -34,7 +33,7 @@ This repository contains a comprehensive implementation of **HIP-VPLS with IPsec
 The implementation uses **IPsec AH (Protocol 0x33)** instead of ESP for the data plane, ensuring:
 - Authentication and integrity protection via HMAC
 - Unencrypted payload for network visibility and debugging
-- Full RFC 4302 compliance
+- RFC 4302 compliance
 - Seamless integration with existing HIP key material
 
 ## Development Status
